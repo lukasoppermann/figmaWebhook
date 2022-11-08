@@ -19,6 +19,8 @@ jobs:
         # change tokens here (and in line 32) if you want to use a differently named folder 
         run: 'mkdir -p releases'
       # this creates a json file from the stringified json from the request body
+      - name: Display structure of downloaded files
+        run: ls -R
       - name: create json from request body
         id: create-json
         uses: jsdaniell/create-json@1.1.2
@@ -30,8 +32,9 @@ jobs:
           json: ${{ github.request_info.payload }}
           
           # it uses the directory named "tokens" to store this json file (change this if you changed it above to use a different folder)
-          dir: releases/
-          path: ./
+          dir: ./releases/
+      - name: Display structure of downloaded files
+        run: ls -R
       # we now initialize node to run amazon style dictionary to compile the tokens
       # - name: Use Node.js 14.x
       #   uses: actions/setup-node@v1
