@@ -47,3 +47,13 @@ jobs:
       # # We now run npm i to install all dependencies and run the "transfrom" script that is defined in the package.json (change this if you need to)
       # - name: Transform design tokens 
       #   run: 'npm i && npm run transform-tokens'
+      - name: Create PR 
+        uses: peter-evans/create-pull-request@v3
+        with:
+          commit-message: "New Figma Release"
+          title: "New Figma Release"
+          body: "New Figma Release"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          # this parameter is optional and defaults to master but I am using main
+          BRANCH_NAME: 'main'
