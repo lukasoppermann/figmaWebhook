@@ -23,16 +23,16 @@ jobs:
         run: ls -R
       - name: Show json
         run: |
-          echo "${{ github.event.client_payload.filename }}"
+          echo "${{ github.event.client_payload.file_name }}"
       - name: create json from request body
         id: create-json
         uses: jsdaniell/create-json@1.1.2
         with:
           # it uses the figma filename that was send as then filename parameter
           # name: ${{ github.event.client_payload.filename }}
-          name: ${{ github.event.client_payload.filename }}
+          name: ${{ github.event.client_payload.file_name }}
           # it uses the json string that was send as the tokens parameter
-          json: ${{ github.event.client_payload }}
+          json: ${{ github.event.client_payload.timestamp }}
           
           # it uses the directory named "tokens" to store this json file (change this if you changed it above to use a different folder)
           dir: releases/
