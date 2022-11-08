@@ -2,7 +2,8 @@
 name: Figma release
 # this triggers the action when a post to "https://api.github.com/repos/:username/:repo/dispatches" comes in
 on:
-  repository_dispatch
+  repository_dispatch:
+    type: FIGMA_RELEASE
 
 jobs:
   build:
