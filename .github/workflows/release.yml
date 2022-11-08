@@ -30,7 +30,8 @@ jobs:
           json: ${{ github.request_info.payload }}
           
           # it uses the directory named "tokens" to store this json file (change this if you changed it above to use a different folder)
-          dir: 'releases/'
+          dir: releases/
+          path: ./
       # we now initialize node to run amazon style dictionary to compile the tokens
       # - name: Use Node.js 14.x
       #   uses: actions/setup-node@v1
