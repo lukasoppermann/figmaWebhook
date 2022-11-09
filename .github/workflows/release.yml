@@ -24,18 +24,9 @@ jobs:
       - name: Show json
         run: |
           echo "${{ github.event.client_payload.file_name }}"
-      - name: create json from request body
-        id: create-json
-        uses: jsdaniell/create-json@1.1.2
-        with:
-          # it uses the figma filename that was send as then filename parameter
-          # name: ${{ github.event.client_payload.filename }}
-          name: "${{ github.event.client_payload.file_name }}.json"
-          # it uses the json string that was send as the tokens parameter
-          json: ${{ github.event.client_payload.triggered_by }}
-          
-          # it uses the directory named "tokens" to store this json file (change this if you changed it above to use a different folder)
-          dir: releases/
+      - name: create file from request body
+        run: |
+          echo "${{ github.event.client_payload.triggered_by }}" >> "releases/${{ github.event.client_payload.file_name }}.json"
       - name: Display structure of downloaded files
         run: ls -R
       # we now initialize node to run amazon style dictionary to compile the tokens
