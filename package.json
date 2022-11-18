@@ -1,5 +1,6 @@
 {
   "name": "figma-webhook",
+  "private": true,
   "version": "0.0.0",
   "main": "index.js",
   "repository": {
@@ -13,6 +14,9 @@
   },
   "homepage": "https://github.com/lukasoppermann/figmaWebhook#readme",
   "description": "",
+  "scripts": {
+    "release": "changeset publish"
+  },
   "devDependencies": {
     "@changesets/cli": "^2.25.2"
   }
