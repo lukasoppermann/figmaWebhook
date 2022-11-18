@@ -1,6 +1,5 @@
 {
   "name": "figma-webhook",
-  "private": true,
   "version": "0.1.0",
   "main": "index.js",
   "repository": {
