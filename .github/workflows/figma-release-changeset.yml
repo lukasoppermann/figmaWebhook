@@ -21,9 +21,9 @@ jobs:
           echo "${{ github.event.client_payload.releaseNote }}" > ".changeset/${{ github.event.client_payload.fileInfo.fileName }}-${{ github.event.client_payload.fileInfo.timestamp }}.md"
 
       - name: commit to base branch
-        uses: stefanzweifel/git-auto-commit-action@v4
+        uses: EndBug/add-and-commit@v9
         with:
-          commit_message: "added changeset for ${{ github.event.client_payload.fileInfo.fileName }}-${{ github.event.client_payload.fileInfo.timestamp }}.md"
-          branch: main
+          message: "added changeset for ${{ github.event.client_payload.fileInfo.fileName }}-${{ github.event.client_payload.fileInfo.timestamp }}.md"
+          add: ".changeset"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
