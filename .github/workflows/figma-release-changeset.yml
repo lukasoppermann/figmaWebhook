@@ -13,14 +13,8 @@ jobs:
     # we run this on ubuntu, leave this alone, if you don't have a good reason to change it
     runs-on: ubuntu-latest
     steps:
-      # this lets us work in the actual repository
-      - uses: actions/checkout@v2
-      # if the folder named ".changeset" does not exist, create it
-
-      - name: mkdir ".changeset" directory
-        # change tokens here (and in line 32) if you want to use a differently named folder
-        run: "mkdir -p .changeset"
-      # this creates a json file from the stringified json from the request body
+      - name: checkout repository
+        uses: actions/checkout@v2
 
       - name: create changeset
         run: |
