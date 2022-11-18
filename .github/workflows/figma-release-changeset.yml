@@ -15,6 +15,8 @@ jobs:
     steps:
       - name: checkout repository
         uses: actions/checkout@v2
+        with:
+          token: ${{ secrets.AUTO_COMMIT }}
 
       - name: create changeset
         run: |
@@ -25,5 +27,3 @@ jobs:
         with:
           message: "added changeset for ${{ github.event.client_payload.fileInfo.fileName }}-${{ github.event.client_payload.fileInfo.timestamp }}.md"
           add: ".changeset"
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
