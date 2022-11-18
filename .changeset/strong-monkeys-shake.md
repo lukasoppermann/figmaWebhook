@@ -1,5 +1,0 @@
----
-"figma-webhook": patch
----
-
-test
