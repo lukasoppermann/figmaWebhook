@@ -18,7 +18,7 @@ jobs:
 
       - name: create changeset
         run: |
-          echo "${{ github.event.client_payload.releaseNote }}" > "${{ github.event.client_payload.fileInfo.fileName }}-${{ github.event.client_payload.fileInfo.timestamp }}.md"
+          echo "${{ github.event.client_payload.releaseNote }}" > ".changeset/${{ github.event.client_payload.fileInfo.fileName }}-${{ github.event.client_payload.fileInfo.timestamp }}.md"
 
       - name: commit to base branch
         uses: stefanzweifel/git-auto-commit-action@v4
