@@ -77,29 +77,33 @@ const createRelease = async (
   try {
     let changelogFileName = path.join(pkg.dir, "CHANGELOG.md");
 
-    let changelog = await fs.readFile(changelogFileName, "utf8", () => {
-      console.log("Reading changelog");
-    });
+    let changelog = await fs.readFile(
+      changelogFileName,
+      "utf8",
+      async (error, changelog) => {
+        if (changelog) {
+          if (typeof changelog === "string") {
+            let changelogEntry = getChangelogEntry(
+              changelog,
+              pkg.packageJson.version
+            );
+            if (!changelogEntry) {
+              throw new Error(
+                `Could not find changelog entry for ${pkg.packageJson.name}@${pkg.packageJson.version}`
+              );
+            }
 
-    if (typeof changelog === "string") {
-      let changelogEntry = getChangelogEntry(
-        changelog,
-        pkg.packageJson.version
-      );
-      if (!changelogEntry) {
-        throw new Error(
-          `Could not find changelog entry for ${pkg.packageJson.name}@${pkg.packageJson.version}`
-        );
+            await octokit.rest.repos.createRelease({
+              name: tagName,
+              tag_name: tagName,
+              body: changelogEntry.content,
+              prerelease: pkg.packageJson.version.includes("-"),
+              ...github.context.repo,
+            });
+          }
+        }
       }
-
-      await octokit.rest.repos.createRelease({
-        name: tagName,
-        tag_name: tagName,
-        body: changelogEntry.content,
-        prerelease: pkg.packageJson.version.includes("-"),
-        ...github.context.repo,
-      });
-    }
+    );
   } catch (err: any) {
     if (err.code !== "ENOENT") {
       throw err;
