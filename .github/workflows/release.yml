@@ -24,11 +24,14 @@ jobs:
         run: yarn
 
       - name: Install Octokit
-        run: npm install @octokit/action
+        run: yarn add @octokit/action
 
       - name: Create Release Pull Request
         uses: changesets/action@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      -
+      - name: Run release script
+        run: npx ts-node .github/actions/create-release.ts
+          env:
+            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
