@@ -60,7 +60,7 @@ export function getChangelogEntry(changelog: string, version: string) {
   }
   if (headingStartInfo) {
     ast.children = (ast.children as any).slice(
-      headingStartInfo.index + 1,
+      headingStartInfo.index, // prev +1
       endIndex
     );
   }
