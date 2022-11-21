@@ -2,7 +2,7 @@ import fs from "fs";
 import path from "path";
 const { Octokit } = require("@octokit/action");
 import * as github from "@actions/github";
-import { getChangelogEntry } from "changesets/action/src/utils";
+const { getChangelogEntry } = require("changesets/action/src/utils");
 import type { Package } from "@manypkg/get-packages";
 
 import { name, version } from "../../package.json";
