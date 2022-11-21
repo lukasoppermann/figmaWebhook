@@ -33,5 +33,5 @@ jobs:
 
       - name: Run release script
         run: npx ts-node .github/actions/create-release.ts
-          env:
-            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
