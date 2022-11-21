@@ -32,6 +32,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Run release script
-        run: npx ts-node .github/actions/create-release.ts
+        run: npx ts-node --transpile-only .github/actions/create-release.ts
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

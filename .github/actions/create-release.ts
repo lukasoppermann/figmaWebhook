@@ -37,7 +37,7 @@ const createRelease = async (
         ...github.context.repo,
       });
     }
-  } catch (err) {
+  } catch (err: any) {
     if (err.code !== "ENOENT") {
       throw err;
     }
