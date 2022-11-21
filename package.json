@@ -17,6 +17,9 @@
     "release": "changeset publish"
   },
   "devDependencies": {
-    "@changesets/cli": "^2.25.2"
+    "@actions/github": "^5.1.1",
+    "@changesets/cli": "^2.25.2",
+    "changesets/action": "github:changesets/action#main",
+    "typescript": "^4.9.3"
   }
 }
