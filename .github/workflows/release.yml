@@ -44,19 +44,10 @@ jobs:
       - name: Install Dependencies
         run: yarn
 
-      - uses: mukunku/tag-exists-action@v1.1.0
-        id: checkTag
-        with:
-          tag: "v1"
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
       - name: Install Octokit
-        if: steps.checkTag.outputs.exists == 'false'
         run: yarn add @octokit/action
 
       - name: Run release script
-        if: steps.checkTag.outputs.exists == 'false'
         run: npx ts-node --transpile-only .github/actions/create-release.ts
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

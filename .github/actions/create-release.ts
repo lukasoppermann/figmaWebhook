@@ -90,13 +90,22 @@ const createRelease = async (
             );
           }
 
-          await octokit.rest.repos.createRelease({
-            name: tagName,
-            tag_name: tagName,
-            body: changelogEntry.content,
-            prerelease: pkg.packageJson.version.includes("-"),
-            ...github.context.repo,
+          const { owner, repo } = github.context.repo;
+          const getRef = octokit.rest.git.getRef({
+            owner,
+            repo,
+            ref: `tags/${tagName}`,
           });
+
+          if (getRef.status === 404) {
+            await octokit.rest.repos.createRelease({
+              name: tagName,
+              tag_name: tagName,
+              body: changelogEntry.content,
+              prerelease: pkg.packageJson.version.includes("-"),
+              ...github.context.repo,
+            });
+          }
         }
       }
     });
