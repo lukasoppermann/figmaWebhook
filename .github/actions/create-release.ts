@@ -89,30 +89,24 @@ const createRelease = async (
               `Could not find changelog entry for ${pkg.packageJson.name}@${pkg.packageJson.version}`
             );
           }
-          let tagExists = false;
           try {
             const { owner, repo } = github.context.repo;
-            const getRemoteTag = octokit.rest.git.getRef({
+            await octokit.rest.git.getRef({
               owner,
               repo,
               ref: `tags/${tagName}`,
             });
-
-            if (getRemoteTag.status === 200) {
-              tagExists = true;
+          } catch (error: any) {
+            if (error.status === 404) {
+              console.log(`Tag ${tagName} does not exist`);
+              await octokit.rest.repos.createRelease({
+                name: tagName,
+                tag_name: tagName,
+                body: changelogEntry.content,
+                prerelease: pkg.packageJson.version.includes("-"),
+                ...github.context.repo,
+              });
             }
-          } catch (error) {
-            console.log(`Tag ${tagName} does not exist`);
-          }
-
-          if (!tagExists) {
-            await octokit.rest.repos.createRelease({
-              name: tagName,
-              tag_name: tagName,
-              body: changelogEntry.content,
-              prerelease: pkg.packageJson.version.includes("-"),
-              ...github.context.repo,
-            });
           }
         }
       }
