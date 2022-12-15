@@ -15,7 +15,7 @@
   "description": "",
   "scripts": {
     "release": "changeset publish",
-    "releaseNote": "\"{\n    \"file_name\": \"Interface guidelines\",\n \"description\":\"Update note\",\n    \"timestamp\": \"2022-11-08T14:32:27Z\",\n    \"triggered_by\": {\n      \"id\": \"1138842193708355597\",\n      \"handle\": \"Lukas Oppermann\"\n    },\n    \"created_styles\": [],\n    \"deleted_styles\": [],\n    \"modified_styles\": [],\n    \"created_components\": [\n      {\n        \"key\": \"8caa0cb5658ca5ae10ee6fcc9bb4af8d3f531a84\",\n        \"name\": \"Rectangle 1\"\n      }\n    ],\n    \"deleted_components\": [],\n    \"modified_components\": []\n  }\" | npx ts-node --transpile-only .github/actions/create-release-note.ts"
+    "createChangeset": "npx ts-node --transpile-only .github/actions/create-release-note.ts"
   },
   "devDependencies": {
     "@actions/github": "^5.1.1",

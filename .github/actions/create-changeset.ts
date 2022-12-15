@@ -1,3 +1,7 @@
+import json from 'temp-api-response.json'
+
+console.log(json)
+
 // import Mustache from 'mustache';
 
 // function renderReleaseNotes() {
