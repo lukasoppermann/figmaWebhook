@@ -14,17 +14,20 @@
   "homepage": "https://github.com/lukasoppermann/figmaWebhook#readme",
   "description": "",
   "scripts": {
-    "release": "changeset publish"
+    "release": "changeset publish",
+    "releaseNote": "\"{\n    \"file_name\": \"Interface guidelines\",\n \"description\":\"Update note\",\n    \"timestamp\": \"2022-11-08T14:32:27Z\",\n    \"triggered_by\": {\n      \"id\": \"1138842193708355597\",\n      \"handle\": \"Lukas Oppermann\"\n    },\n    \"created_styles\": [],\n    \"deleted_styles\": [],\n    \"modified_styles\": [],\n    \"created_components\": [\n      {\n        \"key\": \"8caa0cb5658ca5ae10ee6fcc9bb4af8d3f531a84\",\n        \"name\": \"Rectangle 1\"\n      }\n    ],\n    \"deleted_components\": [],\n    \"modified_components\": []\n  }\" | npx ts-node --transpile-only .github/actions/create-release-note.ts"
   },
   "devDependencies": {
     "@actions/github": "^5.1.1",
     "@changesets/cli": "^2.25.2",
-    "typescript": "^4.9.3",
     "@manypkg/get-packages": "^1.1.3",
     "mdast-util-to-string": "^1.0.6",
     "remark-parse": "^7.0.1",
     "remark-stringify": "^7.0.3",
+    "typescript": "^4.9.3",
     "unified": "^8.3.2"
   },
-  "dependencies": {}
+  "dependencies": {
+    "mustache": "^4.2.0"
+  }
 }
