@@ -1,0 +1,39 @@
+# Published {{ timestamp }} {{! transform to real data }}
+by {{ triggered_by.handle }}
+
+{{ description }}
+
+## Component updates
+
+{{#created_components}}
+### [{{name}}](https://www.figma.com/file/{{file_key}}?node-id={{node_id}})
+Created by {{ lastModifiedBy.handle }}
+![Thumbnail for {{name}}]({{thumbnailUrl}})
+{{/created_components}}
+
+{{#modified_components}}
+### [{{name}}](https://www.figma.com/file/{{file_key}}?node-id={{node_id}})
+Modified by {{ lastModifiedBy.handle }}
+![Thumbnail for {{name}}]({{thumbnailUrl}})
+{{/modified_components}}
+
+{{#deleted_components}}
+### {{name}}
+Removed by {{ lastModifiedBy.handle }}
+{{/deleted_components}}
+
+## Style updates
+{{#created_styles}}
+### [{{name}}](https://www.figma.com/file/{{file_key}}?node-id={{node_id}})
+Created by {{ lastModifiedBy.handle }}
+{{/created_styles}}
+
+{{#modified_styles}}
+### [{{name}}](https://www.figma.com/file/{{file_key}}?node-id={{node_id}})
+Modified by {{ lastModifiedBy.handle }}
+{{/modified_styles}}
+
+{{#deleted_styles}}
+### {{name}}
+Removed by {{ lastModifiedBy.handle }}
+{{/deleted_styles}}
