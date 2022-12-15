@@ -1,4 +1,4 @@
-import json from 'temp-api-response.json'
+import json from './temp-api-response.json'
 
 console.log(json)
 
