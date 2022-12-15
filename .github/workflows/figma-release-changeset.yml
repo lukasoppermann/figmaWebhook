@@ -24,7 +24,7 @@ jobs:
       
       - name: save API response to temporary json
         run: |
-          echo "${{ github.event.client_payload.releaseJson }}" > "temp-api-response.json"
+          echo '\${{ github.event.client_payload.releaseJson }}' > "temp-api-response.json"
 
       - name: create changeset
         run: |
