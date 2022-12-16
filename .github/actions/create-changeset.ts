@@ -1,16 +1,19 @@
 // import json from './temp-api-response.json'
-import { readFileSync } from 'fs';
+import Mustache from 'mustache';
+import { readFileSync, writeFileSync } from 'fs';
+
+const renderWithTemplate = async (template: string, data: Record<string, unknown>): Promise<string> => {
+  return fetch(template)
+    .then((response) => response.text())
+    .then((template) => Mustache.render(template, data))
+}
 
 const json = readFileSync('./temp-api-response.json')
+const parsedJson = JSON.parse(json.toString())
 
-console.log(JSON.parse(json))
+const writeChangeset = async () => {
+  const changeset = await renderWithTemplate('../templates/default-release-note.mustache', parsedJson)
+  writeFileSync(`.changeset/${parsedJson.fileInfo.fileName}-${parsedJson.fileInfo.timestamp}.md`, changeset)
+}
 
-// import Mustache from 'mustache';
-
-// function renderReleaseNotes() {
-//   fetch('template.mustache')
-//     .then((response) => response.text())
-//     .then((template) => Mustache.render(template, { name: 'Luke' }););
-// }
-
-// var output = Mustache.render("{{title}} spends {{calc}}", view);
+writeChangeset()
