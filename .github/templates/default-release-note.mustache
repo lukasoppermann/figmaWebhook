@@ -1,39 +1,43 @@
-# Published {{ timestamp }} {{! transform to real data }}
-by {{ triggered_by.handle }}
+# Published {{ fileInfo.timestamp }} {{! transform to real data }}
+by {{ triggeredBy.handle }}
 
+{{#description}}
 {{ description }}
 
+{{/description}}
 ## Component updates
 
-{{#created_components}}
+{{#changes.createdComponents}}
 ### [{{name}}](https://www.figma.com/file/{{file_key}}?node-id={{node_id}})
 Created by {{ lastModifiedBy.handle }}
-![Thumbnail for {{name}}]({{thumbnailUrl}})
-{{/created_components}}
 
-{{#modified_components}}
+![Thumbnail for {{name}}]({{thumbnailUrl}})
+{{/changes.createdComponents}}
+
+{{#changes.modifiedComponents}}
 ### [{{name}}](https://www.figma.com/file/{{file_key}}?node-id={{node_id}})
 Modified by {{ lastModifiedBy.handle }}
-![Thumbnail for {{name}}]({{thumbnailUrl}})
-{{/modified_components}}
 
-{{#deleted_components}}
+![Thumbnail for {{name}}]({{thumbnailUrl}})
+
+{{/changes.modifiedComponents}}
+{{#changes.deletedComponents}}
 ### {{name}}
 Removed by {{ lastModifiedBy.handle }}
-{{/deleted_components}}
 
+{{/changes.deletedComponents}}
 ## Style updates
-{{#created_styles}}
+{{#changes.createdStyles}}
 ### [{{name}}](https://www.figma.com/file/{{file_key}}?node-id={{node_id}})
 Created by {{ lastModifiedBy.handle }}
-{{/created_styles}}
 
-{{#modified_styles}}
+{{/changes.createdStyles}}
+{{#changes.modifiedStyles}}
 ### [{{name}}](https://www.figma.com/file/{{file_key}}?node-id={{node_id}})
 Modified by {{ lastModifiedBy.handle }}
-{{/modified_styles}}
 
-{{#deleted_styles}}
+{{/changes.modifiedStyles}}
+{{#changes.deletedStyles}}
 ### {{name}}
 Removed by {{ lastModifiedBy.handle }}
-{{/deleted_styles}}
+{{/changes.deletedStyles}}
