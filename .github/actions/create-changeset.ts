@@ -1,6 +1,9 @@
-import json from './temp-api-response.json'
+// import json from './temp-api-response.json'
+import { readFileSync } from 'fs';
 
-console.log(json)
+const json = readFileSync('./temp-api-response.json')
+
+console.log(JSON.parse(json))
 
 // import Mustache from 'mustache';
 
