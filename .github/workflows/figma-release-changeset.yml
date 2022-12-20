@@ -34,11 +34,11 @@ jobs:
         run: |
           echo '${{ github.event.client_payload.releaseJson }}' > "temp-api-response.json"
 
-      - name: commit to base branch
-        uses: EndBug/add-and-commit@v9
-        with:
-          message: "added temp-api-response.json"
-          add: "temp-api-response.json"
+      # - name: commit to base branch
+      #   uses: EndBug/add-and-commit@v9
+      #   with:
+      #     message: "added temp-api-response.json"
+      #     add: "temp-api-response.json"
 
       - name: create changeset
         run: |
