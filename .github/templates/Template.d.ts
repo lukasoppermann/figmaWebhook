@@ -3,7 +3,6 @@ export type Template = (args: TemplateArguments) => string
 export type TemplateArguments = {
   fileInfo: {
     fileKey: string;
-    package: string;
     fileName: string;
     timestamp: number;
   };

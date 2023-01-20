@@ -1,15 +1,18 @@
-// import json from './temp-api-response.json'
-// import Mustache from 'mustache';
-import { render } from '../templates/default-release-note'
 import { readFileSync, writeFileSync } from 'fs';
+import { packages } from '../config/packages'
 
-// const renderWithTemplate = (template: string, data: Record<string, unknown>): Promise<string> => {
-//   const templateContent = readFileSync(template).toString()
-//   return Mustache.render(templateContent, data)
-// }
+const createChangeset = async () => {
+  const figmaJson = readFileSync('./temp-api-response.json')
+  const parsedJson = JSON.parse(figmaJson.toString())
 
-const json = readFileSync('./temp-api-response.json')
-const parsedJson = JSON.parse(json.toString())
+  const packageData = packages[parsedJson.fileInfo.fileKey]
+  // get template
+  const { render } = await import(`../templates/${packageData.template}`)
+  // add package name to json
+  parsedJson.fileInfo.package = packageData.name
+  // build changeset
+  const changeset = render(parsedJson).replace(/\n{2,}/g, "\n")
+  writeFileSync(`.changeset/${parsedJson.fileInfo.fileName}-${parsedJson.fileInfo.timestamp}.md`, changeset)
+}
 
-const changeset = render(parsedJson).replace(/\n{2,}/g, "\n")
-writeFileSync(`.changeset/${parsedJson.fileInfo.fileName}-${parsedJson.fileInfo.timestamp}.md`, changeset)
+createChangeset()
