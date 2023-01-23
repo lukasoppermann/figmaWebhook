@@ -1,0 +1,15 @@
+{
+  "name": "primer-web",
+  "version": "0.3.0",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lukasoppermann/figmaWebhook.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lukasoppermann/figmaWebhook/issues"
+  },
+  "homepage": "https://github.com/lukasoppermann/figmaWebhook#readme",
+  "description": "",
+}
