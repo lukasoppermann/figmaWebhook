@@ -6,6 +6,9 @@
     "type": "git",
     "url": "git+https://github.com/lukasoppermann/figmaWebhook.git"
   },
+      "workspaces": [
+    "packages/*"
+  ],
   "author": "",
   "license": "ISC",
   "bugs": {
