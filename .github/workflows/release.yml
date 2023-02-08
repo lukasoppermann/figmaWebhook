@@ -21,7 +21,7 @@ jobs:
           node-version: 18.x
 
       - name: Install Dependencies
-        run: yarn
+        run: npm i
 
       - name: Create Release Pull Request
         uses: changesets/action@v1
@@ -42,7 +42,7 @@ jobs:
           node-version: 18.x
 
       - name: Install Dependencies
-        run: yarn
+        run: npm i
 
       - name: Install Octokit
         run: yarn add @octokit/action
